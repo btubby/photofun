@@ -6,7 +6,7 @@ const Container = styled.div`
   display:flex;
   justify-content: space-around;
   
-  background-color: tomato;
+  background-color: palevioletred;
   height: 100%;
   width: 100%;
   padding: 300px 0;
