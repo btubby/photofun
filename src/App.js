@@ -1,82 +1,86 @@
-import React, { Component, useState,useRef } from 'react'
-import straight from './straight.jpg'
-import west from './w.jpg'
-import east from './e.jpg'
-import north from './n.jpg'
-import south from './s.jpg'
-import northeast from './ne.jpg'
-import northwest from './nw.jpg'
-import southeast from './se.jpg'
-import southwest from './sw.jpg'
+import React, { Component, useState,useRef,useEffect } from 'react'
+import styled from 'styled-components';
+import ReactDOM from 'react-dom'
 
-const styles = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  backgroundColor: 'E0C7A8'
-}
 
-function TiltPhaseTwo(props) {
-  
-  const [image, setImage] = useState(straight);
-  const inputEl = useRef(null);
+import Face from './componments/Face'
 
+const Title = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: palevioletred;
+`;
+const Container = styled.div`
+  display:flex;
+  justify-content: space-between;
+  background-color: palevioletred;
+  height: 100%;
+  padding: 300px;
+`;
+export default function App() {
+ 
+    const [xCord, setxCord] = useState(0);
+    const [yCord, setyCord] = useState(0);
+
+    const [ITop1, setITop1] = useState(0);
+    const [IBottom1, setIBottom1] = useState(0);
+    const [IRight1, setIRight1] = useState(0);
+    const [ILeft1, setILeft1] = useState(0);
+ 
+    const [ITop2, setITop2] = useState(0);
+    const [IBottom2, setIBottom2] = useState(0);
+    const [IRight2, setIRight2] = useState(0);
+    const [ILeft2, setILeft2] = useState(0);
+ 
+    const [ITop3, setITop3] = useState(0);
+    const [IBottom3, setIBottom3] = useState(0);
+    const [IRight3, setIRight3] = useState(0);
+    const [ILeft3, setILeft3] = useState(0);
     return (
-      <div>
+      <Container
+        onMouseMove={(e) => { 
+          setxCord(e.nativeEvent.clientX);
+          setyCord(e.nativeEvent.clientY);
+        }}
+      >
+        <Title>hello</Title>
         <div
-          ref={inputEl}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            border: '1px solid red',
-            paddingTop: '100px',
-            paddingBottom: '100px',
-          }}
-          onMouseEnter={(e) => { 
-            console.log('onMouseEnter', e.clientX, e.clientY) 
-          }}
-          onMouseMove={(e) => { 
-            let size  = inputEl.current.getBoundingClientRect();
-            console.log(size);
-
-              let xCord = e.nativeEvent.clientX;
-              let yCord = e.nativeEvent.clientY;
-              console.log('onMouseMove',xCord, yCord) 
-
-              const xNorthCutoff = 200;
-              const xSouthCutoff = 900;
-              const ySouthCutoff = 380;
-
-              let c = { n:0, e:0, s:0, w:0, s:0 }
-              if (yCord <= xNorthCutoff) {c.n=1; }
-              if (xCord >= xSouthCutoff ){ c.e=1 }
-              if (xCord <= 700 ) { c.w=1; }
-              if (yCord >= ySouthCutoff ){ c.s=1; }
-
-              console.log(c);
-              let i = straight
-              if (c.n) { i=north }
-              if (c.e) { i=east }
-              if (c.n && c.e){ i=northeast }
-              
-              if (c.s) { i=south }
-              if (c.s && c.e){ i=southeast }
-
-              if (c.w) { i=west }
-              if (c.s && c.w){ i=southwest }
-              
-              if (c.w && c.n){ i=northwest }
-              setImage(i)
-
-          }}
-          onMouseLeave={ (e) => {
-            console.log('onMouseLeave', e.clientX, e.clientY)
+           ref={(el) => {
+            if (!el) return;
+            setITop1(el.getBoundingClientRect().top);
+            setIBottom1(el.getBoundingClientRect().bottom);
+            setIRight1(el.getBoundingClientRect().right);
+            setILeft1(el.getBoundingClientRect().left)
           }}
         >
-        <img src={image} alt="" width='30%'/>
+          <Face type={'will1'} xCord={xCord} yCord={yCord} ITop={ITop1} IBottom={IBottom1} IRight={IRight1} ILeft={ILeft1}/>
         </div>
-      </div>
-    )
+        
+        <div
+           ref={(el2) => {
+            if (!el2) return;
+            setITop2(el2.getBoundingClientRect().top);
+            setIBottom2(el2.getBoundingClientRect().bottom);
+            setIRight2(el2.getBoundingClientRect().right);
+            setILeft2(el2.getBoundingClientRect().left)
+          }}
+        >
+          <Face type={'will2'} xCord={xCord} yCord={yCord}  ITop={ITop2} IBottom={IBottom2} IRight={IRight2} ILeft={ILeft2} />
+        </div>
+
+        <div
+           ref={(el3) => {
+            if (!el3) return;
+            setITop3(el3.getBoundingClientRect().top);
+            setIBottom3(el3.getBoundingClientRect().bottom);
+            setIRight3(el3.getBoundingClientRect().right);
+            setILeft3(el3.getBoundingClientRect().left)
+          }}
+        >
+          <Face type={'will3'} xCord={xCord} yCord={yCord}  ITop={ITop3} IBottom={IBottom3} IRight={IRight3} ILeft={ILeft3} />
+        </div>
+
+      </Container>
+    );
 }
-export default TiltPhaseTwo;
+
