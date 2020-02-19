@@ -35,13 +35,21 @@ import bsouthwest from './ben/sw.jpg'
 
 const Container = styled.div`
   display:flex;
-  justify-content: space-around;
+  flex-direction:row;
+  justify-content: center;
   
-  background-color: palevioletred;
+  /* background-color: #F9D7BC; */
   height: 100%;
   width: 100%;
   padding: 300px 0;
 `;
+
+const FaceContainer = styled.div`
+   background-color: red;
+   position: relative;
+   top:30;
+   width:20%
+`
 export default function App() {
  
     const [xCord, setxCord] = useState(0);
@@ -62,6 +70,21 @@ export default function App() {
     const [E3, setE3] = useState(0);
     const [W3, setW3] = useState(0);
  
+    const [N4, setN4] = useState(0);
+    const [S4, setS4] = useState(0);
+    const [E4, setE4] = useState(0);
+    const [W4, setW4] = useState(0);
+ 
+    const [N5, setN5] = useState(0);
+    const [S5, setS5] = useState(0);
+    const [E5, setE5] = useState(0);
+    const [W5, setW5] = useState(0);
+ 
+    const [N6, setN6] = useState(0);
+    const [S6, setS6] = useState(0);
+    const [E6, setE6] = useState(0);
+    const [W6, setW6] = useState(0);
+
     return (
       <Container
         onMouseMove={(e) => { 
@@ -69,7 +92,7 @@ export default function App() {
           setyCord(e.nativeEvent.clientY);
         }}
       >
-        <div
+        <FaceContainer
            ref={(dd) => {
             if (!dd) return;
             setN1(dd.getBoundingClientRect().top);
@@ -79,27 +102,12 @@ export default function App() {
           }}
         >
           <SwivelFace  // will
-            ITop={N1} IBottom={S1} IRight={E1} ILeft={W1} xCord={xCord} yCord={yCord} 
+            type={'will'} N={N1} S={S1} E={E1} W={W1} xCord={xCord} yCord={yCord} 
             straight={wstraight} w={wwest} e={weast} n={wnorth} s={wsouth} ne={wnortheast} nw={wnorthwest} se={wsoutheast} sw={wsouthwest}
             />
-        </div>
+        </FaceContainer>
         
-        <div
-           ref={(dd) => {
-            if (!dd) return;
-            setN2(dd.getBoundingClientRect().top);
-            setS2(dd.getBoundingClientRect().bottom);
-            setE2(dd.getBoundingClientRect().right);
-            setW2(dd.getBoundingClientRect().left)
-          }}
-        >
-          <SwivelFace  // kerry
-            ITop={N2} IBottom={S2} IRight={E2} ILeft={W2} xCord={xCord} yCord={yCord} 
-            straight={kstraight} w={kwest} e={keast} n={knorth} s={ksouth} ne={knortheast} nw={knorthwest} se={ksoutheast} sw={ksouthwest}
-            />
-        </div>
-
-        <div
+        <FaceContainer
            ref={(dd) => {
             if (!dd) return;
             setN3(dd.getBoundingClientRect().top);
@@ -109,10 +117,73 @@ export default function App() {
           }}
         >
           <SwivelFace  // ben
-            ITop={N3} IBottom={S3} IRight={E3} ILeft={W3} xCord={xCord} yCord={yCord} 
+            type={'ben'} N={N3} S={S3} E={E3} W={W3} xCord={xCord} yCord={yCord} 
             straight={bstraight} w={bwest} e={beast} n={bnorth} s={bsouth} ne={bnortheast} nw={bnorthwest} se={bsoutheast} sw={bsouthwest}
           />
-        </div>
+        </FaceContainer>
+
+        <FaceContainer
+           ref={(dd) => {
+            if (!dd) return;
+            setN2(dd.getBoundingClientRect().top);
+            setS2(dd.getBoundingClientRect().bottom);
+            setE2(dd.getBoundingClientRect().right);
+            setW2(dd.getBoundingClientRect().left)
+          }}
+        >
+          <SwivelFace  // kerry
+            type={'kerry'} N={N2} S={S2} E={E2} W={W2} xCord={xCord} yCord={yCord} 
+            straight={kstraight} w={kwest} e={keast} n={knorth} s={ksouth} ne={knortheast} nw={knorthwest} se={ksoutheast} sw={ksouthwest}
+            />
+        </FaceContainer>
+
+      
+        <FaceContainer
+           ref={(dd) => {
+            if (!dd) return;
+            setN4(dd.getBoundingClientRect().top);
+            setS4(dd.getBoundingClientRect().bottom);
+            setE4(dd.getBoundingClientRect().right);
+            setW4(dd.getBoundingClientRect().left)
+          }}
+        >
+          <SwivelFace  // will
+            type={'will'} N={N4} S={S4} E={E4} W={W4} xCord={xCord} yCord={yCord} 
+            straight={wstraight} w={wwest} e={weast} n={wnorth} s={wsouth} ne={wnortheast} nw={wnorthwest} se={wsoutheast} sw={wsouthwest}
+            />
+        </FaceContainer>
+        
+        <FaceContainer
+           ref={(dd) => {
+            if (!dd) return;
+            setN5(dd.getBoundingClientRect().top);
+            setS5(dd.getBoundingClientRect().bottom);
+            setE5(dd.getBoundingClientRect().right);
+            setW5(dd.getBoundingClientRect().left)
+          }}
+        >
+          <SwivelFace  // ben
+            type={'ben'} N={N5} S={S5} E={E5} W={W5} xCord={xCord} yCord={yCord} 
+            straight={bstraight} w={bwest} e={beast} n={bnorth} s={bsouth} ne={bnortheast} nw={bnorthwest} se={bsoutheast} sw={bsouthwest}
+          />
+        </FaceContainer>
+
+        <FaceContainer
+           ref={(dd) => {
+            if (!dd) return;
+            setN6(dd.getBoundingClientRect().top);
+            setS6(dd.getBoundingClientRect().bottom);
+            setE6(dd.getBoundingClientRect().right);
+            setW6(dd.getBoundingClientRect().left)
+          }}
+        >
+          <SwivelFace  // kerry
+            type={'kerry'} N={N6} S={S6} E={E6} W={W6} xCord={xCord} yCord={yCord} 
+            straight={kstraight} w={kwest} e={keast} n={knorth} s={ksouth} ne={knortheast} nw={knorthwest} se={ksoutheast} sw={ksouthwest}
+            />
+        </FaceContainer>
+
+
 
       </Container>
     );
