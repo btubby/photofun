@@ -88,7 +88,7 @@ const OuterContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   align-content: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width:100%;
 `;
 const FloatingContent = styled.div`
@@ -124,7 +124,7 @@ const TellMeHow = styled.div`
 const HowText = styled.div`
   display: inline-block;
   text-align: center;
-  font-size:5em;
+  font-size:4em;
   font-weight: 900;
   line-height:1.6;
 `;
@@ -201,6 +201,24 @@ export default function App() {
     "will",
     "ben",
     "kerry",
+    "will",
+    "ben",
+    "kerry",
+    "will",
+    "ben",
+    "kerry",
+    "will",
+    "ben",
+    "kerry",
+    "will",
+    "ben",
+    "kerry",
+    "will",
+    "ben",
+    "kerry",
+    "will",
+    "ben",
+    "kerry",
     "will"
   ].forEach(e => {
     faces.push(
@@ -256,7 +274,7 @@ function How() {
   return (
     <div>
     <HowText>
-        1. Take photos *<br/>
+        1. Take photos*<br/>
         2. <a href="mailto:btubby@gmail.com">email them</a>
     </HowText>
     <Rest>
