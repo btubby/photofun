@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* @font-face {
+  font-family: 'FiraSans';
+  src: local('FiraSans'), url('../fonts/FiraSans-Regular.ttf') format('truetype');
+} */
+
+a {
+  color: #707070;
+  text-decoration: none;
+}
+a:hover {
+   color: #FFF
+}
