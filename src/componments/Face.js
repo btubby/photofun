@@ -1,16 +1,5 @@
 import React, { useState, useEffect } from "react";
-
-import styled from "styled-components";
-
-const Container = styled.div`
-  display: flex;
-  height: 100%;
-  width: 100%;
-`;
-const IMG = styled.img`
-  width: 100%;
-  height: auto;
-`;
+import { Container, Image } from "./Face.styles";
 
 export default function SwivellingFace(props) {
   const {
@@ -91,7 +80,7 @@ export default function SwivellingFace(props) {
         setW1(dd.getBoundingClientRect().left);
       }}
     >
-      <IMG src={image} alt="{image}" />
+      <Image src={image} alt="{image}" />
     </Container>
   );
 }

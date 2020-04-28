@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import SwivelFace from "./componments/Face";
 import './App.css';
 
@@ -9,40 +8,74 @@ import {
   Route,
 } from "react-router-dom";
 
+import { OuterContainer, HowText, TitleContainer, Title, TellMeHow, Rest, Rest2, FaceContainer, FloatingContent } from "./styles/styles";
+
 // import './fonts/FiraSans-Regular.ttf'
 
-import kstraight from "./kerry/straight.jpg";
-import kwest from "./kerry/w.jpg";
-import keast from "./kerry/e.jpg";
-import knorth from "./kerry/n.jpg";
-import ksouth from "./kerry/s.jpg";
-import knortheast from "./kerry/ne.jpg";
-import knorthwest from "./kerry/nw.jpg";
-import ksoutheast from "./kerry/se.jpg";
-import ksouthwest from "./kerry/sw.jpg";
+ // TODO these imports need to be dynamic.
+ // Sort out where the images will be hosted
+import bstraight from "./mugs/ben/straight.jpg";
+import bwest from "./mugs/ben/w.jpg";
+import beast from "./mugs/ben/e.jpg";
+import bnorth from "./mugs/ben/n.jpg";
+import bsouth from "./mugs/ben/s.jpg";
+import bnortheast from "./mugs/ben/ne.jpg";
+import bnorthwest from "./mugs/ben/nw.jpg";
+import bsoutheast from "./mugs/ben/se.jpg";
+import bsouthwest from "./mugs/ben/sw.jpg";
 
-import wstraight from "./will/straight.jpg";
-import wwest from "./will/w.jpg";
-import weast from "./will/e.jpg";
-import wnorth from "./will/n.jpg";
-import wsouth from "./will/s.jpg";
-import wnortheast from "./will/ne.jpg";
-import wnorthwest from "./will/nw.jpg";
-import wsoutheast from "./will/se.jpg";
-import wsouthwest from "./will/sw.jpg";
+import kstraight from "./mugs/kerry/straight.jpg";
+import kwest from "./mugs/kerry/w.jpg";
+import keast from "./mugs/kerry/e.jpg";
+import knorth from "./mugs/kerry/n.jpg";
+import ksouth from "./mugs/kerry/s.jpg";
+import knortheast from "./mugs/kerry/ne.jpg";
+import knorthwest from "./mugs/kerry/nw.jpg";
+import ksoutheast from "./mugs/kerry/se.jpg";
+import ksouthwest from "./mugs/kerry/sw.jpg";
 
-import bstraight from "./ben/straight.jpg";
-import bwest from "./ben/w.jpg";
-import beast from "./ben/e.jpg";
-import bnorth from "./ben/n.jpg";
-import bsouth from "./ben/s.jpg";
-import bnortheast from "./ben/ne.jpg";
-import bnorthwest from "./ben/nw.jpg";
-import bsoutheast from "./ben/se.jpg";
-import bsouthwest from "./ben/sw.jpg";
+import wstraight from "./mugs/will/straight.jpg";
+import wwest from "./mugs/will/w.jpg";
+import weast from "./mugs/will/e.jpg";
+import wnorth from "./mugs/will/n.jpg";
+import wsouth from "./mugs/will/s.jpg";
+import wnortheast from "./mugs/will/ne.jpg";
+import wnorthwest from "./mugs/will/nw.jpg";
+import wsoutheast from "./mugs/will/se.jpg";
+import wsouthwest from "./mugs/will/sw.jpg";
 
-const images = {
-  ben: {
+import hstraight from "./mugs/hannah/straight.jpeg";
+import hwest from "./mugs/hannah/w.jpeg";
+import heast from "./mugs/hannah/e.jpeg";
+import hnorth from "./mugs/hannah/n.jpeg";
+import hsouth from "./mugs/hannah/s.jpeg";
+import hnortheast from "./mugs/hannah/ne.jpeg";
+import hnorthwest from "./mugs/hannah/nw.jpeg";
+import hsoutheast from "./mugs/hannah/se.jpeg";
+import hsouthwest from "./mugs/hannah/sw.jpeg";
+
+import estraight from "./mugs/eva/straight.jpeg";
+import ewest from "./mugs/eva/w.jpeg";
+import eeast from "./mugs/eva/e.jpeg";
+import enorth from "./mugs/eva/n.jpeg";
+import esouth from "./mugs/eva/s.jpeg";
+import enortheast from "./mugs/eva/ne.jpeg";
+import enorthwest from "./mugs/eva/nw.jpeg";
+import esoutheast from "./mugs/eva/se.jpeg";
+import esouthwest from "./mugs/eva/sw.jpeg";
+
+// photo processing
+// resize to 724x715px
+// with gimp; 
+// create new image 
+//   and then drag photo drect from phone in
+//   color / bnrightness/contract 39/35
+//   export as
+
+
+// array of objects representing the mugs to display
+const MugMap = [
+  {
     straight: bstraight,
     n: bnorth,
     ne: bnortheast,
@@ -53,7 +86,7 @@ const images = {
     w: bwest,
     nw: bnorthwest
   },
-  kerry: {
+  {
     straight: kstraight,
     n: knorth,
     ne: knortheast,
@@ -64,7 +97,7 @@ const images = {
     w: kwest,
     nw: knorthwest
   },
-  will: {
+  {
     straight: wstraight,
     n: wnorth,
     ne: wnortheast,
@@ -74,158 +107,55 @@ const images = {
     sw: wsouthwest,
     w: wwest,
     nw: wnorthwest
-  }
-};
-const OuterContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
-  /* border: 1px solid red; */
-  width:100%;
-`;
-const FloatingContent = styled.div`
-  align-content: center;
-  position:absolute;
-  top:10%;
-  text-align: center;
-  width:100%;
-  height: 100%;
-  z-index:1000;
-`;
-const TitleContainer = styled.div`
-  padding-top:5%;
-
-`;
-const Title = styled.div`
-  display: inline-block;
-  text-align: center;
-  font-size:4em;
-  font-weight: 900;
-  border-top: 200px;
-  width:60%;
-`;
-const TellMeHow = styled.div`
-  display: inline-block;
-  text-align: center;
-  font-size:4em;
-  font-weight: 900;
-  line-spacing: 20px;
-  width:60%;
-`;
-
-const HowText = styled.div`
-  display: inline-block;
-  text-align: center;
-  font-size:4em;
-  font-weight: 900;
-  line-height:1.6;
-`;
-const Rest = styled.div`
-  font-size:2em;
-  font-weight: 900;
-`;
-const Rest2 = styled.div`
-  padding-top:50px;
-  font-weight: 900;
-  font-size:1.5em;
-`;
-const FaceContainer = styled.div`
-  background-color: red;
-  position: relative;
-  opacity:0.3;
-  width: 20%;
-`;
+  },
+  {
+    straight: hstraight,
+    n: hnorth,
+    ne: hnortheast,
+    e: heast,
+    s: hsouth,
+    se: hsoutheast,
+    sw: hsouthwest,
+    w: hwest,
+    nw: hnorthwest
+  },
+  {
+    straight: estraight,
+    n: enorth,
+    ne: enortheast,
+    e: eeast,
+    s: esouth,
+    se: esoutheast,
+    sw: esouthwest,
+    w: ewest,
+    nw: enorthwest
+  },
+  
+]
 
 export default function App() {
   const [xCord, setxCord] = useState(0);
   const [yCord, setyCord] = useState(0);
   
+  // FIXME
+  const maxMugsToDisplay = 20;
+  const loops = maxMugsToDisplay / MugMap.length;
+
   const faces = [];
-  [
-    "ben",
-    "kerry",
-    "will",
-
-    "ben",
-    "kerry",
-    "will",
-
-    "ben",
-    "kerry",
-    "will",
-    "ben",
-    "kerry",
-    "will",
-    "ben",
-    "kerry",
-    "will",
-    "ben",
-    "kerry",
-    "will",
-    "ben",
-    "kerry",
-    "will",
-    "ben",
-    "kerry",
-    "will",
-    "ben",
-    "kerry",
-    "will",
-
-    "ben",
-    "kerry",
-    "will",
-    
-    "ben",
-    "kerry",
-    "will",
-    "ben",
-    "kerry",
-    "will",
-    "ben",
-    "kerry",
-    "will",
-    "ben",
-    "kerry",
-    "will",
-    "ben",
-    "kerry",
-    "will",
-    "ben",
-    "kerry",
-    "will",
-    "ben",
-    "kerry",
-    "will",
-    "ben",
-    "kerry",
-    "will",
-    "ben",
-    "kerry",
-    "will",
-    "ben",
-    "kerry",
-    "will",
-    "ben",
-    "kerry",
-    "will",
-    "ben",
-    "kerry",
-    "will"
-  ].forEach(e => {
-    faces.push(
-      <FaceContainer>
-        <SwivelFace // will
-          type={"will"}
-          xCord={xCord}
-          yCord={yCord}
-          {...images[e]}
-        />
-      </FaceContainer>
-    );
-  });
-
+  for (var i = 0; i < loops; i++) {
+    for (var j = 0; j < MugMap.length; j++) {
+      faces.push(
+        <FaceContainer>
+          <SwivelFace
+            {...MugMap[j]}
+            xCord={xCord}
+            yCord={yCord}
+          />
+        </FaceContainer>
+      );
+    }
+  }
+  
   return (
     <Router>
       <OuterContainer
@@ -255,7 +185,6 @@ function Home() {
     <TitleContainer>
       <Title>
           Get your mug on this page!
-          <p/> 
       </Title>
       <TellMeHow>
         <a href='/how'>tell me how</a>
@@ -268,7 +197,7 @@ function How() {
     <div>
     <HowText>
         1. Take photos*<br/>
-        2. <a href="mailto:btubby@gmail.com">email them</a>
+        2. <a href="mailto:btubby@gmail.com">email them</a> / WhatsApp to me
     </HowText>
     <Rest>
       (the rest will be done for you!)<p/>
