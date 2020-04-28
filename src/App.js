@@ -7,13 +7,9 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
-
-
-import './fonts/FiraSans-Regular.ttf'
-
+// import './fonts/FiraSans-Regular.ttf'
 
 import kstraight from "./kerry/straight.jpg";
 import kwest from "./kerry/w.jpg";
@@ -53,7 +49,6 @@ const images = {
     e: beast,
     s: bsouth,
     se: bsoutheast,
-    s: bsouth,
     sw: bsouthwest,
     w: bwest,
     nw: bnorthwest
@@ -65,7 +60,6 @@ const images = {
     e: keast,
     s: ksouth,
     se: ksoutheast,
-    s: ksouth,
     sw: ksouthwest,
     w: kwest,
     nw: knorthwest
@@ -77,7 +71,6 @@ const images = {
     e: weast,
     s: wsouth,
     se: wsoutheast,
-    s: wsouth,
     sw: wsouthwest,
     w: wwest,
     nw: wnorthwest
