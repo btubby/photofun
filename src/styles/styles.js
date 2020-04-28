@@ -11,7 +11,7 @@ export const OuterContainer = styled.div`
 export const FloatingContent = styled.div`
   align-content: center;
   position:absolute;
-  top:10%;
+  top:3%;
   text-align: center;
   width:100%;
   height: 100%;
@@ -37,7 +37,6 @@ export const TellMeHow = styled.div`
   text-align: center;
   font-size:4em;
   font-weight: 900;
-  line-spacing: 20px;
   width:60%;
 `;
 
@@ -65,3 +64,15 @@ export const FaceContainer = styled.div`
   opacity:0.3;
   width: 20%;
 `;
+
+export const ImgContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid green;
+`;
+
+export const ImgWrapper = styled.div`
+  max-width:30%;
+  border: 1px solid tomato;
+`;
+

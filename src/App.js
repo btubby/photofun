@@ -1,38 +1,23 @@
 import React, { useState } from "react";
-import SwivelFace from "./componments/Face";
-import './App.css';
-
+import SwivellingFace from "./componments/Face";
+import Home from "./componments/Home";
+import How from "./componments/How";
+import SnapMug from "./componments/SnapMug";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
-
-import { OuterContainer, HowText, TitleContainer, Title, TellMeHow, Rest, Rest2, FaceContainer, FloatingContent } from "./styles/styles";
-
+import { OuterContainer,FaceContainer, FloatingContent } from "./styles/styles";
+import './App.css';
+// import { CameraFeed } from "./componments/camera-feed"
 // import './fonts/FiraSans-Regular.ttf'
 
  // TODO these imports need to be dynamic.
  // Sort out where the images will be hosted
-import bstraight from "./mugs/ben/straight.jpg";
-import bwest from "./mugs/ben/w.jpg";
-import beast from "./mugs/ben/e.jpg";
-import bnorth from "./mugs/ben/n.jpg";
-import bsouth from "./mugs/ben/s.jpg";
-import bnortheast from "./mugs/ben/ne.jpg";
-import bnorthwest from "./mugs/ben/nw.jpg";
-import bsoutheast from "./mugs/ben/se.jpg";
-import bsouthwest from "./mugs/ben/sw.jpg";
 
-import kstraight from "./mugs/kerry/straight.jpg";
-import kwest from "./mugs/kerry/w.jpg";
-import keast from "./mugs/kerry/e.jpg";
-import knorth from "./mugs/kerry/n.jpg";
-import ksouth from "./mugs/kerry/s.jpg";
-import knortheast from "./mugs/kerry/ne.jpg";
-import knorthwest from "./mugs/kerry/nw.jpg";
-import ksoutheast from "./mugs/kerry/se.jpg";
-import ksouthwest from "./mugs/kerry/sw.jpg";
+
+
 
 import wstraight from "./mugs/will/straight.jpg";
 import wwest from "./mugs/will/w.jpg";
@@ -73,29 +58,40 @@ import esouthwest from "./mugs/eva/sw.jpeg";
 //   export as
 
 
-// array of objects representing the mugs to display
+// array of objects representing the mugs to display.  NOTE they are rendered in this order
 const MugMap = [
   {
-    straight: bstraight,
-    n: bnorth,
-    ne: bnortheast,
-    e: beast,
-    s: bsouth,
-    se: bsoutheast,
-    sw: bsouthwest,
-    w: bwest,
-    nw: bnorthwest
+    straight: require("./mugs/ben/straight.jpg"),
+    n:  require("./mugs/ben/n.jpg"),
+    ne: require("./mugs/ben/se.jpg"),
+    e: require("./mugs/ben/e.jpg"),
+    s: require("./mugs/ben/s.jpg"),
+    se: require("./mugs/ben/se.jpg"),
+    sw: require("./mugs/ben/nw.jpg"),
+    w: require("./mugs/ben/w.jpg"),
+    nw: require("./mugs/ben/nw.jpg")
   },
   {
-    straight: kstraight,
-    n: knorth,
-    ne: knortheast,
-    e: keast,
-    s: ksouth,
-    se: ksoutheast,
-    sw: ksouthwest,
-    w: kwest,
-    nw: knorthwest
+    straight: require("./mugs/kerry/straight.jpg"),
+    n: require("./mugs/kerry/n.jpg"),
+    ne: require("./mugs/kerry/ne.jpg"),
+    e: require("./mugs/kerry/e.jpg"),
+    s: require("./mugs/kerry/s.jpg"),
+    se: require("./mugs/kerry/ne.jpg"),
+    sw: require("./mugs/kerry/sw.jpg"),
+    w: require("./mugs/kerry/w.jpg"),
+    nw: require("./mugs/kerry/nw.jpg"),
+  },
+  {
+    straight: estraight,
+    n: enorth,
+    ne: enortheast,
+    e: eeast,
+    s: esouth,
+    se: esoutheast,
+    sw: esouthwest,
+    w: ewest,
+    nw: enorthwest
   },
   {
     straight: wstraight,
@@ -119,25 +115,13 @@ const MugMap = [
     w: hwest,
     nw: hnorthwest
   },
-  {
-    straight: estraight,
-    n: enorth,
-    ne: enortheast,
-    e: eeast,
-    s: esouth,
-    se: esoutheast,
-    sw: esouthwest,
-    w: ewest,
-    nw: enorthwest
-  },
-  
+
 ]
 
 export default function App() {
   const [xCord, setxCord] = useState(0);
   const [yCord, setyCord] = useState(0);
   
-  // FIXME
   const maxMugsToDisplay = 20;
   const loops = maxMugsToDisplay / MugMap.length;
 
@@ -146,7 +130,7 @@ export default function App() {
     for (var j = 0; j < MugMap.length; j++) {
       faces.push(
         <FaceContainer>
-          <SwivelFace
+          <SwivellingFace
             {...MugMap[j]}
             xCord={xCord}
             yCord={yCord}
@@ -172,42 +156,13 @@ export default function App() {
             <Route path="/how">
               <How />
             </Route>
+            <Route path="/snapMug">
+              <SnapMug />
+            </Route>
           </Switch>
         </FloatingContent>
         {faces}
       </OuterContainer>
     </Router>
-  );
-}
-
-function Home() {
-  return (
-    <TitleContainer>
-      <Title>
-          Get your mug on this page!
-      </Title>
-      <TellMeHow>
-        <a href='/how'>tell me how</a>
-      </TellMeHow>
-    </TitleContainer>
-  );
-}
-function How() {
-  return (
-    <div>
-    <HowText>
-        1. Take photos*<br/>
-        2. <a href="mailto:btubby@gmail.com">email them</a> / WhatsApp to me
-    </HowText>
-    <Rest>
-      (the rest will be done for you!)<p/>
-    </Rest>
-    <Rest2>
-      * We need 8 photos of you looking in all directions.
-      <br/>Use a tripod, or a family member to take the photos.
-      <p/>
-    [<a href='/'>back</a>]
-    </Rest2>
-    </div>
   );
 }
