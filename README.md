@@ -6,6 +6,8 @@ On mobile the faces snap to the point the user clicks.
 
 Hosted: https://princetubby-32a5c.firebaseapp.com/
 
+This project consumes my swivel face component https://github.com/btubby/swivel
+
 ## TODO
 
 - Experiment with taking photos with the webcamera, if available.
